@@ -14,7 +14,7 @@ let backgroundAlpha = 30;
 let textLines = [
   "'Did you fall out of the sky?' he asked.",
   "'Yes, I did,' I said.",
-  "'Oh, that's funny!' he said. 'That's very funny!' Then he laughed and laughed."
+  "'Oh, that's funny!' he said.\n'That's very funny!' Then he laughed and laughed."
 ];
 let currentTextIndex = 0;
 let textAlpha = 0;

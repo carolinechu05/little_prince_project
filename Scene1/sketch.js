@@ -7,7 +7,7 @@ let animationSpeed = 0.05;
 let brightnessAdjust = 100;
 let currentIndex = 0;
 let frameCounter = 0;
-let animationInterval = 1;
+let animationInterval = 3;
 let backgroundAlpha = 30;
 
 // Text animation variables
