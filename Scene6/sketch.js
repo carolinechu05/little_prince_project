@@ -6,7 +6,7 @@ let brightnessAdjust = 20;
 
 // Text animation variables
 let textLines = [
-  "'You’re sad, but I can help you,' said the snake.",
+  "'You're sad, but I can help you,' said the snake.",
   "'How can you help me?' asked the little prince.",
   "'I can send you back to your planet one day.\nI can bite you and you will go home.'"
 ];
