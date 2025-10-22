@@ -12,7 +12,8 @@ let backgroundAlpha = 30;
 
 // Text animation variables
 let textLines = [
-  "'Flowers die,' the writer said. 'Flowers aren't interesting'"
+  "'I love you, you know, but I don't need you. Go away now.'",
+  "I was very sad and she was very sad.",
 ];
 let currentTextIndex = 0;
 let textAlpha = 0;

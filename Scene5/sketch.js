@@ -2,7 +2,7 @@ let img;
 let asciiChars = ' .:-=+*#%@';
 let charSize = 5;
 let animationSpeed = 1;
-let brightnessAdjust = 20;
+let brightnessAdjust = 50;
 
 // Text animation variables
 let textLines = [
