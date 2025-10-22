@@ -1,19 +1,12 @@
-let images = [];
-let imageFiles = ['pic1_1.jpeg', 'pic1_2.jpeg', 'pic1_3.jpeg', 'pic1_4.jpeg', 'pic1_5.jpeg', 'pic1_6.jpeg','pic1_7.jpeg','pic1_8.jpeg','pic1_9.jpeg','pic1_10.jpeg'];
 let img;
 let asciiChars = ' .:-=+*#%@';
 let charSize = 5;
-let animationSpeed = 0.02;
-let brightnessAdjust = 100;
-let currentIndex = 0;
-let frameCounter = 0;
-let animationInterval = 5;
-let backgroundAlpha = 30;
+let animationSpeed = 0.1;
+let brightnessAdjust = 20;
 
 // Text animation variables
 let textLines = [
-  "'I love you, you know, but I don't need you. Go away now.'",
-  "I was very sad and she was very sad.",
+  "'Flowers die,' the writer said. 'Flowers aren't interesting'"
 ];
 let currentTextIndex = 0;
 let textAlpha = 0;
@@ -23,12 +16,10 @@ let fadeSpeed = 30; // ~0.5s fade-in/out at 30 fps
 let holdFrames = 30; // ~4s hold at 30 fps
 
 function preload() {
-  for (let i = 0; i < imageFiles.length; i++) {
-    images[i] = loadImage(imageFiles[i], 
-      () => console.log(`Loaded ${imageFiles[i]}`),
-      () => console.error(`Failed to load ${imageFiles[i]}`)
-    );
-  }
+  img = loadImage('pic2.jpeg', 
+    () => console.log('Loaded pic1.jpeg'),
+    () => console.error('Failed to load pic1.jpeg')
+  );
 }
 
 function setup() {
@@ -38,65 +29,23 @@ function setup() {
   } else {
     console.error('canvas-container not found; appending canvas to body');
   }
+  pixelDensity(2);
   textFont('Courier New');
   textSize(charSize);
   textAlign(CENTER, CENTER);
-  background(34, 34, 34, backgroundAlpha);
+  background('#222222');
   noStroke();
   frameRate(30);
   
-  if (images[currentIndex] && images[currentIndex].width > 0) {
-    img = images[currentIndex].get();
-    resizeImageWithAspectRatio();
-  } else {
-    console.error('Initial image not loaded, waiting for preload to complete.');
-  }
-
   // Set up text styling for animated text
   textSize(35);
   textAlign(CENTER, TOP);
   textLeading(40); // Adjust line spacing for \n
 }
 
-function resizeImageWithAspectRatio() {
-  if (!img || img.width === 0 || img.height === 0) {
-    console.error('Image is not ready for resizing.');
-    return;
-  }
-  
-  let imgAspect = img.width / img.height;
-  let canvasAspect = width / height;
-  
-  let scaledWidth, scaledHeight;
-  
-  if (imgAspect > canvasAspect) {
-    scaledWidth = width;
-    scaledHeight = width / imgAspect;
-  } else {
-    scaledHeight = height;
-    scaledWidth = height * imgAspect;
-  }
-  
-  img.resize(floor(scaledWidth), floor(scaledHeight));
-}
-
 function draw() {
-  background(34, 34, 34, backgroundAlpha);
+  background('#222222');
   
-  // Update image for GIF effect
-  frameCounter++;
-  if (frameCounter >= animationInterval) {
-    currentIndex = (currentIndex + 1) % images.length;
-    if (images[currentIndex] && images[currentIndex].width > 0) {
-      img = images[currentIndex].get();
-      resizeImageWithAspectRatio();
-    } else {
-      console.error(`Image at index ${currentIndex} not loaded.`);
-    }
-    frameCounter = 0;
-  }
-  
-  // Draw ASCII art
   if (img && img.width > 0 && img.height > 0) {
     let imgAspect = img.width / img.height;
     let canvasAspect = width / height;
@@ -135,7 +84,7 @@ function draw() {
         let brightness = (r + g + b) / 3;
         brightness = brightness + brightnessAdjust;
         
-        let wave = sin(frameCount * animationSpeed + x * -0.01 + y * 0.01) * 30;
+        let wave = sin(frameCount * animationSpeed + x * -0.01 + y * -0.01) * 50;
         brightness = constrain(brightness + wave, 0, 255);
         
         let charIndex = floor(map(brightness, 0, 255, 0, asciiChars.length));
@@ -151,7 +100,7 @@ function draw() {
     fill(255);
     textSize(20);
     textAlign(CENTER, CENTER);
-    text("Loading images...", width / 2, height / 2);
+    text("Loading image...", width / 2, height / 2);
   }
 
   // Text animation
@@ -178,7 +127,7 @@ function draw() {
   }
   textAlpha = constrain(textAlpha, 0, 255); // Prevent overshooting
 
-  // Draw text over ASCII art GIF
+  // Draw text over ASCII art
   textSize(35);
   textAlign(CENTER, TOP);
   textLeading(40); // Adjust line spacing for \n
@@ -196,18 +145,13 @@ function draw() {
 
 function fileDropped(file) {
   if (file.type === 'image') {
-    img = loadImage(file.data, () => {
-      resizeImageWithAspectRatio();
-    }, () => {
-      console.error('Failed to load dropped image.');
-    });
-    currentIndex = -1;
+    img = loadImage(file.data, 
+      () => console.log('Loaded dropped image'),
+      () => console.error('Failed to load dropped image')
+    );
   }
 }
 
 function windowResized() {
   resizeCanvas(windowWidth, windowHeight);
-  if (img && img.width > 0) {
-    resizeImageWithAspectRatio();
-  }
 }
