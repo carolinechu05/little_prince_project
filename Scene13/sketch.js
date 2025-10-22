@@ -41,7 +41,7 @@ function setup() {
   frameRate(30);
   
   // Set up text styling for animated text
-  textSize(35);
+  textSize(25);
   textAlign(CENTER, TOP);
   textLeading(40); // Adjust line spacing for \n
 }
