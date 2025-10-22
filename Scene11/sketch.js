@@ -6,7 +6,7 @@ let brightnessAdjust = 20;
 
 // Text animation variables
 let textLines = [
-  "'Flowers die,' the writer said. 'Flowers aren't interesting'"
+  "'Flowers die,' the writer said. \n'Flowers aren't interesting'"
 ];
 let currentTextIndex = 0;
 let textAlpha = 0;
