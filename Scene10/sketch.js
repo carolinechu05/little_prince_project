@@ -39,7 +39,7 @@ function setup() {
   frameRate(30);
   
   // Set up text styling for animated text
-  textSize(25);
+  textSize(20);
   textAlign(CENTER, TOP);
   textLeading(40); // Adjust line spacing for \n
 }
@@ -129,7 +129,7 @@ function draw() {
   textAlpha = constrain(textAlpha, 0, 255); // Prevent overshooting
 
   // Draw text over ASCII art
-  textSize(25);
+  textSize(20);
   textAlign(CENTER, TOP);
   textLeading(40); // Adjust line spacing for \n
   // Shadow effect
