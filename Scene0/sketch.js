@@ -130,7 +130,7 @@ function draw() {
   textAlpha = constrain(textAlpha, 0, 255); // Prevent overshooting
 
   // Draw text over ASCII art
-  textSize(40);
+  textSize(30);
   textAlign(CENTER, TOP);
   textLeading(40); // Adjust line spacing for \n
   // Shadow effect
